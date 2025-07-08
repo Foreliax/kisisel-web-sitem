@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forelia'ın Kişisel Sitesi</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+  font-family: 'Inter', sans-serif;
+  font-feature-settings: "ss07";
+  font-family: Arial, sans-serif;
+  background-color: #0a192f;
+  color: #ccd6f6;
+  margin: 0;
+  padding: 0;
+}
+    header {
+      text-align: center;
+      padding: 100px 20px 50px;
+      animation: fadeIn 2s ease-in;
+    }
+    header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      margin-bottom: 20px;
+    }
+    header h1 {
+      font-size: 48px;
+      margin: 0;
+      color: #64ffda;
+    }
+    header p {
+      font-size: 20px;
+      margin-top: 10px;
+      color: #8892b0;
+    }
+    section {
+      max-width: 800px;
+      margin: 30px auto;
+      background-color: rgba(10,25,47,0.7);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 255, 170, 0.1);
+      animation: slideUp 1.5s ease;
+    }
+    h2 {
+      color: #64ffda;
+    }
+    a {
+      color: #64ffda;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: #52d4b0;
+    }
+    footer {
+      text-align: center;
+      padding: 40px;
+      font-size: 14px;
+      color: #8892b0;
+    }
+    .social-icons {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 999;
+    }
+    .social-icons a {
+      color: #64ffda;
+      font-size: 22px;
+      text-decoration: none;
+      transition: transform 0.3s, color 0.3s;
+      animation: bounce 2s infinite;
+    }
+    .social-icons a:hover {
+      color: #52d4b0;
+      transform: scale(1.2);
+    }
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+      to { opacity: 1; transform: translateY(0); }
+    }
+  @media (max-width: 768px) {
+  header h1 {
+    font-size: 32px;
+  }
+  header p {
+    font-size: 16px;
+  }
+  header img {
+    width: 120px;
+    height: 120px;
+  }
+  section {
+    padding: 20px;
+    margin: 20px;
+  }
+  h2 {
+    font-size: 22px;
+  }
+  .social-icons {
+    left: 10px;
+    bottom: 10px;
+    gap: 10px;
+  }
+  .social-icons a {
+    font-size: 18px;
+  }
+}
+  .skill-bar {
+    background:#112240;
+    border-radius:5px;
+    overflow:hidden;
+    margin-bottom:10px;
+    position: relative;
+    height: 16px;
+  }
+  .skill-bar-fill {
+  background: repeating-linear-gradient(135deg, #64ffda, #64ffda 10px, #52d4b0 10px, #52d4b0 20px);
+  background-size: 200% 100%;
+  height: 100%;
+  width: 0;
+  animation: waveFill 2s linear forwards;
+}
+  .skill-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+  @keyframes waveFill {
+  from {
+    background-position: 200% 0;
+    width: 0;
+  }
+  to {
+    background-position: 0 0;
+    width: var(--fill-width);
+  }
+}
+    to { width: var(--fill-width); }
+  }
+
+  100% { background-position: 40px 40px; }
+}
+.cursor-light {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(100,255,218,0.05) 0%, rgba(10,25,47,0) 80%);
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: opacity 0.2s ease;
+  mix-blend-mode: screen;
+}
+</style>
+<style>
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #0a192f;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  nav a {
+    color: #ccd6f6;
+    text-decoration: none;
+    font-size: 16px;
+    position: relative;
+    transition: color 0.3s;
+  }
+  nav a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #64ffda;
+    transition: width 0.3s;
+  }
+  nav a:hover::after {
+    width: 100%;
+  }
+  nav a:hover {
+    color: #64ffda;
+  }
+</style>
+</head>
+<body>
+  <nav>
+  <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin: auto; padding: 0 20px;">
+    <span style="color: #64ffda; font-weight: bold; font-size: 20px; letter-spacing: 1px;">Can Alataş</span>
+    <div style="display: flex; gap: 30px;">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+  <header style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 40px; padding: 100px 20px 50px; animation: fadeIn 2s ease-in;">
+  <div style="flex: 1; min-width: 280px; text-align: left;">
+  <h1 style="font-size: 56px; color: #ffffff; margin: 0 0 20px 0; font-weight: 700; letter-spacing: -0.05em; line-height: 1.2; font-family: 'Inter', sans-serif;">Can Alataş</h1>
+  <h2 style="font-size: 40px; color: #ffffff; margin: 0 0 25px 0; font-weight: 600;">Frontend Developer</h2>
+  <p style="font-size: 18px; color: #8892b0; max-width: 500px; line-height: 1.6;">
+    Estetik ve kullanıcı odaklı web tasarımları oluşturmaya odaklanan bir geliştiriciyim.
+  </p>
+</div>
+  <div style="flex: 1; min-width: 280px; display: flex; justify-content: center;">
+    <lottie-player
+      src="https://assets7.lottiefiles.com/packages/lf20_qp1q7mct.json"
+      background="transparent"
+      speed="1"
+      style="width: 300px; height: 300px;"
+      loop
+      autoplay>
+    </lottie-player>
+  </div>
+</header>
+
+  <section id="about">
+  <h2>🧑‍💻 Hakkımda</h2>
+  <p>Merhaba! Ben Can Alataş. Web geliştirme dünyasına adım attım ve kendimi bu alanda geliştiriyorum. Tasarıma önem veren, kullanıcı dostu ve yaratıcı çözümler üretmeyi hedefleyen bir geliştiriciyim.</p>
+  <p>Şu anda <strong>HTML</strong>, <strong>CSS</strong> ve <strong>JavaScript</strong> öğreniyorum. React gibi modern araçlara da ilgi duyuyorum. Aynı zamanda e-sporla ilgileniyorum ve oyun geliştiriciliğiyle de ilgilenmeyi planlıyorum.</p>
+  <p>Hedefim; profesyonel projelerde yer almak, açık kaynak katkılarında bulunmak ve sürekli öğrenerek büyümek.</p>
+
+  <ul>
+    <li><strong>📍 Konum:</strong> Türkiye</li>
+    <li><strong>🎯 Hedef:</strong> Frontend Developer olmak</li>
+    <li><strong>📚 Öğrendiklerim:</strong> HTML, CSS, VS Code, Git, C#, C++, PHP </li>
+  </ul>
+
+  <h3>🗓 Zaman Çizelgesi</h3>
+  <div style="border-left: 2px solid #64ffda; padding-left: 20px; margin-bottom: 20px;">
+    <p><strong>2024</strong> – Yazılıma başladım</p>
+    <p><strong>2025</strong> – HTML, CSS öğrendim ve ilk web sitemi yaptım</p>
+    <p><strong>2025</strong> – Çizgi Yazılım Akademisi yaz okuluna katıldım</p>
+  </div>
+
+  <h3>🛠 Yetenekler</h3>
+<div>
+  <div>
+  <div class="skill-label"><p>HTML</p><span>60%</span></div>
+  <div class="skill-bar">
+    <div class="skill-bar-fill" style="--fill-width: 60%;"></div>
+  </div>
+
+  <div class="skill-label"><p>CSS</p><span>60%</span></div>
+  <div class="skill-bar">
+    <div class="skill-bar-fill" style="--fill-width: 60%;"></div>
+  </div>
+
+  <div class="skill-label"><p>JavaScript</p><span>30%</span></div>
+  <div class="skill-bar">
+    <div class="skill-bar-fill" style="--fill-width: 30%;"></div>
+  </div>
+</div>
+  </div>
+
+  <h3>📌 Şu anda ne yapıyorum?</h3>
+  <ul>
+    <li>İlk portföy sitemi geliştiriyorum</li>
+    <li>Frontend becerilerimi geliştiriyorum</li>
+    <li>VS Code ve Git ile çalışmaya alışıyorum</li>
+  </ul>
+
+  <blockquote style="color:#8892b0; font-style: italic; border-left: 3px solid #64ffda; padding-left: 15px; margin-top: 20px;">
+    “Sadelik en yüksek karmaşıklıktır.” – Leonardo da Vinci
+  </blockquote>
+</section>
+
+  <section id="projects">
+    <h2>📁 Projelerim</h2>
+    <ul>
+      <li><a href="#">🛠 Kodlama Blogu (Yapım Aşamasında)</a></li>
+      <li><a href="#">🎨 Mini Portföy (Yakında Yayında)</a></li>
+    </ul>
+  </section>
+
+  <section id="contact">
+  <h2>📬 İletişim</h2>
+  <p>Projelerimle ilgili bir fikrin mi var? Ya da sadece selam mı vermek istiyorsun?</p>
+  <p>Bana doğrudan e-posta gönderebilirsin. Genellikle 24 saat içinde geri dönüş yaparım. 👇</p>
+  <ul>
+    <li>📧 <a href="mailto:canalatas00@gmail.com">canalatas00@gmail.com</a></li>
+  </ul>
+  </section>
+
+  <footer>
+    <p>© 2025 Can Alataş • Tüm hakları saklıdır</p>
+  </footer>
+
+  <div class="social-icons">
+    <a href="https://github.com/Foreliax" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://www.instagram.com/canwinchester0/" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.linkedin.com/in/can-alataş-6aba96373/" target="_blank"><i class="fab fa-linkedin"></i></a>
+  </div>
+
+  <div class="cursor-light" id="cursor-light"></div>
+
+  <script>
+    const light = document.getElementById('cursor-light');
+    document.addEventListener('mousemove', e => {
+      light.style.left = `${e.clientX}px`;
+      light.style.top = `${e.clientY}px`;
+    });
+  </script>
+</body>
+</html>
